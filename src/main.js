@@ -88,4 +88,3 @@ for (let i = 0; i < POINT_COUNT; i++) {
 }
 
 createNewPointElement();
-

@@ -1,54 +1,57 @@
-export const createEventFormOffersTemplate = () => {
+const offerSelectroGenerator = () => {
+  const offersInfoList = [
+    {
+      title: 'Add luggage',
+      feature: 'luggage',
+      price: 50,
+    },
+    {
+      title: 'Switch to comfort',
+      feature: 'comfort',
+      price: 80,
+    },
+    {
+      title: 'Add meal',
+      feature: 'meal',
+      price: 15,
+    },
+    {
+      title: 'Choose seats',
+      feature: 'seats',
+      price: 5,
+    },
+    {
+      title: 'Travel by train',
+      feature: 'train',
+      price: 5,
+    },
+  ];
+  let htmlContent = '';
+  for (let i = 0; i < offersInfoList.length; i++) {
+    htmlContent += `
+      <div class="event__offer-selector">
+        <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offersInfoList[i].feature}-1" type="checkbox" name="event-offer-${offersInfoList[i].feature}" checked="false">
+        <label class="event__offer-label" for="event-offer-${offersInfoList[i].feature}-1">
+          <span class="event__offer-title">${offersInfoList[i].title}</span>
+          +€&nbsp;
+          <span class="event__offer-price">${offersInfoList[i].price}</span>
+        </label>
+      </div>
+    `;
+  }
+  return htmlContent;
+};
+
+const createEventFormOffersTemplate = () => {
   return `
     <section class="event__section  event__section--offers">
       <h3 class="event__section-title  event__section-title--offers">Offers</h3>
 
       <div class="event__available-offers">
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked="">
-          <label class="event__offer-label" for="event-offer-luggage-1">
-            <span class="event__offer-title">Add luggage</span>
-            +€&nbsp;
-            <span class="event__offer-price">50</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-1" type="checkbox" name="event-offer-comfort" checked="">
-          <label class="event__offer-label" for="event-offer-comfort-1">
-            <span class="event__offer-title">Switch to comfort</span>
-            +€&nbsp;
-            <span class="event__offer-price">80</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-1" type="checkbox" name="event-offer-meal">
-          <label class="event__offer-label" for="event-offer-meal-1">
-            <span class="event__offer-title">Add meal</span>
-            +€&nbsp;
-            <span class="event__offer-price">15</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-seats-1" type="checkbox" name="event-offer-seats">
-          <label class="event__offer-label" for="event-offer-seats-1">
-            <span class="event__offer-title">Choose seats</span>
-            +€&nbsp;
-            <span class="event__offer-price">5</span>
-          </label>
-        </div>
-
-        <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-1" type="checkbox" name="event-offer-train">
-          <label class="event__offer-label" for="event-offer-train-1">
-            <span class="event__offer-title">Travel by train</span>
-            +€&nbsp;
-            <span class="event__offer-price">40</span>
-          </label>
-        </div>
+        ${offerSelectroGenerator()}
       </div>
     </section>
   `;
 };
+
+export { createEventFormOffersTemplate };
