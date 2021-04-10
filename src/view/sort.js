@@ -10,27 +10,27 @@ const itemSortGenerator = () => {
     },
     {
       type: 'time',
-      text: 'Day',
+      text: 'Time',
     },
     {
       type: 'price',
-      text: 'Time',
+      text: 'Price',
     },
     {
       type: 'offer',
       text: 'Offers',
     },
   ];
-  let htmlContent = '';
+  let sortMarkup = '';
   for (let i = 0; i < sortInfoList.length; i++) {
-    htmlContent += `
+    sortMarkup += `
       <div class="trip-sort__item  trip-sort__item--${sortInfoList[i].type}">
         <input id="sort-${sortInfoList[i].type}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${sortInfoList[i].type}" checked="">
         <label class="trip-sort__btn" for="sort-${sortInfoList[i].type}">${sortInfoList[i].text}</label>
       </div>
     `;
   }
-  return htmlContent;
+  return sortMarkup;
 };
 
 const createSortTemplate = () => {

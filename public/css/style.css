@@ -954,6 +954,10 @@ main {
   width: 100%;
   overflow-x: scroll; }
 
+.event__photos-container--hidden {
+  display: none;
+}
+
 .event__photos-tape {
   display: -ms-flexbox;
   display: flex;
