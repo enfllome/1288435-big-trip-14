@@ -1,6 +1,4 @@
-// const photosContainer = document.querySelector('.event__photos-container');
-export const createEventPhotosTemplate = (points) => {
-  const { destination } = points;
+export const createEventPhotosTemplate = ({ destination }) => {
 
 
   const picturesNumber = destination.pictures.length;
@@ -14,16 +12,26 @@ export const createEventPhotosTemplate = (points) => {
       }
     } else {
       photosMarkup = '';
-      // photosContainer.classList.add('event__photos-container--hidden ');
     }
 
     return photosMarkup;
   };
-  return `
-    <div class="event__photos-container">
-      <div class="event__photos-tape">
-        ${generatePhotos()}
-      </div>
-    </div>
-  `;
+  const photosContainerGenerator = () => {
+    let containerMarkup = '';
+    if(!(destination.pictures.length === 0)) {
+      containerMarkup = `
+        <div class="event__photos-container">
+          <div class="event__photos-tape">
+            ${generatePhotos()}
+          </div>
+        </div>
+      `;
+    } else {
+      containerMarkup = '';
+    }
+
+    return containerMarkup;
+  };
+
+  return photosContainerGenerator();
 };

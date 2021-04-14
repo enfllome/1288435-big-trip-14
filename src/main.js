@@ -67,7 +67,7 @@ const createEditPointElement = () => {
   render(formEditElement, createEventFormHeaderTemplate(points[1]), 'beforeend');
   const eventDetails = createWrapElement('section', 'event__details');
   formEditElement.append(eventDetails);
-  render(eventDetails, createEventFormOffersTemplate(), 'beforeend');
+  render(eventDetails, createEventFormOffersTemplate(points[1]), 'beforeend');
   render(eventDetails, createEventDestinationTemplate(points[1]), 'beforeend');
 };
 
@@ -77,7 +77,7 @@ const createNewPointElement = () => {
   render(formEditElement, createEventFormHeaderTemplate(points[1]), 'beforeend');
   const eventDetails = createWrapElement('section', 'event__details');
   formEditElement.append(eventDetails);
-  render(eventDetails, createEventFormOffersTemplate(), 'beforeend');
+  render(eventDetails, createEventFormOffersTemplate(points[1]), 'beforeend');
   render(eventDetails, createEventDestinationTemplate(points[1]), 'beforeend');
   const eventDestination = formEditElement.querySelector('.event__section--destination');
   render(eventDestination, createEventPhotosTemplate(points[1]), 'beforeend');

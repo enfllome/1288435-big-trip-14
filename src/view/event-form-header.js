@@ -1,7 +1,4 @@
-import {humanizeEventDueFullDate} from '../util';
-
-const createEventFormHeaderTemplate = (points) => {
-  const { type, destination, date_from, date_to, basePrice } = points;
+const createEventFormHeaderTemplate = ({ type, destination, date, time, basePrice }) => {
 
   const eventTypeGenerator = () => {
     const eventTypeList = [
@@ -58,8 +55,6 @@ const createEventFormHeaderTemplate = (points) => {
     return typeMarkup;
   };
 
-  const timeStart = humanizeEventDueFullDate(date_from);
-  const timeFinish = humanizeEventDueFullDate(date_to);
   return `
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -91,10 +86,10 @@ const createEventFormHeaderTemplate = (points) => {
 
       <div class="event__field-group  event__field-group--time">
         <label class="visually-hidden" for="event-start-time-1">From</label>
-        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${timeStart}">
+        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${date} ${time}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-1">To</label>
-        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${timeFinish}">
+        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${date} ${time}">
       </div>
 
       <div class="event__field-group  event__field-group--price">

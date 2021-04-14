@@ -1,20 +1,6 @@
-import { humanizeEventDueDate, humanizeEventDueTime } from '../util.js';
+import { generateHumanizeDate } from '../util.js';
 
-export const createWaypointTemplate = (points) => {
-  const {
-    type,
-    date_from,
-    date_to,
-    duration,
-    destination,
-    basePrice,
-    offers,
-    isFavorite,
-  } = points;
-
-  const timeStart = humanizeEventDueTime(date_from);
-  const timeFinish = humanizeEventDueTime(date_to);
-  const eventDay = humanizeEventDueDate(date_from);
+export const createWaypointTemplate = ({ type, time, duration, destination, basePrice, offers, isFavorite }) => {
 
   const favoriteClassName = isFavorite
     ? 'event__favorite-btn'
@@ -37,16 +23,16 @@ export const createWaypointTemplate = (points) => {
   return `
     <li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">${eventDay}</time>
+        <time class="event__date" datetime="2019-03-18">${generateHumanizeDate()}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type ${type}">
         </div>
         <h3 class="event__title">${type} ${destination.name}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">${timeStart}</time>
+            <time class="event__start-time" datetime="2019-03-18T10:30">${time}</time>
             —
-            <time class="event__end-time" datetime="2019-03-18T11:00">${timeFinish}</time>
+            <time class="event__end-time" datetime="2019-03-18T11:00">${time}</time>
           </p>
           <p class="event__duration">${duration}</p>
         </div>

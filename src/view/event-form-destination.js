@@ -1,5 +1,4 @@
-export const createEventDestinationTemplate = (points) => {
-  const { destination } = points;
+export const createEventDestinationTemplate = ({ destination }) => {
 
   return `
     <section class="event__section  event__section--destination">
