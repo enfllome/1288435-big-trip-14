@@ -9,7 +9,11 @@ import { createEventFormOffersTemplate } from './view/event-form-offers';
 import { createEventDestinationTemplate } from './view/event-form-destination';
 import { createEventPhotosTemplate } from './view/event-photos';
 
+import { generatePoint } from './mock/data-event.js';
+
 const POINT_COUNT = 3;
+
+const points = new Array(POINT_COUNT).fill().map(generatePoint);
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -60,30 +64,31 @@ const createEventFormElement = () => {
 const createEditPointElement = () => {
   tripEventsListWrap.prepend(createEventFormElement());
   const formEditElement = tripEventsListWrap.querySelector('.event--edit');
-  render(formEditElement, createEventFormHeaderTemplate(), 'beforeend');
+  render(formEditElement, createEventFormHeaderTemplate(points[1]), 'beforeend');
   const eventDetails = createWrapElement('section', 'event__details');
   formEditElement.append(eventDetails);
-  render(eventDetails, createEventFormOffersTemplate(), 'beforeend');
-  render(eventDetails, createEventDestinationTemplate(), 'beforeend');
+  render(eventDetails, createEventFormOffersTemplate(points[1]), 'beforeend');
+  render(eventDetails, createEventDestinationTemplate(points[1]), 'beforeend');
 };
 
 const createNewPointElement = () => {
   tripEventsListWrap.prepend(createEventFormElement());
   const formEditElement = tripEventsListWrap.querySelector('.event--edit');
-  render(formEditElement, createEventFormHeaderTemplate(), 'beforeend');
+  render(formEditElement, createEventFormHeaderTemplate(points[1]), 'beforeend');
   const eventDetails = createWrapElement('section', 'event__details');
   formEditElement.append(eventDetails);
-  render(eventDetails, createEventFormOffersTemplate(), 'beforeend');
-  render(eventDetails, createEventDestinationTemplate(), 'beforeend');
+  render(eventDetails, createEventFormOffersTemplate(points[1]), 'beforeend');
+  render(eventDetails, createEventDestinationTemplate(points[1]), 'beforeend');
   const eventDestination = formEditElement.querySelector('.event__section--destination');
-  render(eventDestination, createEventPhotosTemplate(), 'beforeend');
+  render(eventDestination, createEventPhotosTemplate(points[1]), 'beforeend');
 };
 
 for (let i = 0; i < POINT_COUNT; i++) {
   if ( i === 0 ) {
     createEditPointElement();
+    render(tripEventsListWrap, createWaypointTemplate(points[i]), 'beforeend');
   } else {
-    render(tripEventsListWrap, createWaypointTemplate(), 'beforeend');
+    render(tripEventsListWrap, createWaypointTemplate(points[i]), 'beforeend');
   }
 }
 

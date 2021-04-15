@@ -1,13 +1,37 @@
-export const createEventPhotosTemplate = () => {
-  return `
-    <div class="event__photos-container">
-      <div class="event__photos-tape">
-        <img class="event__photo" src="img/photos/1.jpg" alt="Event photo">
-        <img class="event__photo" src="img/photos/2.jpg" alt="Event photo">
-        <img class="event__photo" src="img/photos/3.jpg" alt="Event photo">
-        <img class="event__photo" src="img/photos/4.jpg" alt="Event photo">
-        <img class="event__photo" src="img/photos/5.jpg" alt="Event photo">
-      </div>
-    </div>
-  `;
+export const createEventPhotosTemplate = ({ destination }) => {
+
+
+  const picturesNumber = destination.pictures.length;
+  const generatePhotos = () => {
+    let photosMarkup = '';
+
+    if (!(picturesNumber === 0)) {
+      for (let i = 0; i < picturesNumber; i++) {
+        photosMarkup +=
+          `<img class="event__photo" src="${destination.pictures[i].src}" alt="${destination.pictures[i].description}">`;
+      }
+    } else {
+      photosMarkup = '';
+    }
+
+    return photosMarkup;
+  };
+  const photosContainerGenerator = () => {
+    let containerMarkup = '';
+    if(!(destination.pictures.length === 0)) {
+      containerMarkup = `
+        <div class="event__photos-container">
+          <div class="event__photos-tape">
+            ${generatePhotos()}
+          </div>
+        </div>
+      `;
+    } else {
+      containerMarkup = '';
+    }
+
+    return containerMarkup;
+  };
+
+  return photosContainerGenerator();
 };
